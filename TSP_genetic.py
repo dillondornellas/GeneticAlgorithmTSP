@@ -102,10 +102,10 @@ def mutation(genome: Genome, probability: float=0.3) -> Genome:
         genome = swap_random(genome) 
     return genome
 
-def evolution(generation_limit: int = 10, fitness_limit: int = 7000):
-    population = generate_population(size = 20, genome_length=len(things))
+def evolution(generation_limit: int = 1000, fitness_limit: int = 7000):
+    population = generate_population(size = 50, genome_length=len(things))
 
-    for i in range(generation_limit):
+    for gen in range(generation_limit):
         #rearange in order of fitness score
         population = sorted(
             population,
@@ -113,12 +113,14 @@ def evolution(generation_limit: int = 10, fitness_limit: int = 7000):
             reverse=False
         )
 
+        #check generation alpha fitness
         if fitness(population[0], things) <= fitness_limit:
             break
 
         #carry the two strongest genomes to the next generation
         next_generation = population[0:2]
 
+        #fill the population with children from dominant parents
         while len(next_generation) < len(population):
             parents = select_parents(population)
             child_a, child_b = single_point_crossover(parents[0], parents[1])
@@ -133,6 +135,7 @@ def evolution(generation_limit: int = 10, fitness_limit: int = 7000):
             key=lambda genome:fitness(genome, things),
             reverse=False
         )
+        yield population[0], fitness(population[0], things), gen
 
     return population[0]
     #return population[0], fitness(population[0], things), (i+1) 
@@ -153,5 +156,6 @@ def evolution(generation_limit: int = 10, fitness_limit: int = 7000):
 #mute_1 = mutation(cross_pair[0])
 #mute_2 = mutation(cross_pair[1])
 #print(' ' +str(mute_1) + '  ' + str(mute_2))
-#print(evolution())
+#for sequence, fit, gen in evolution():
+    #print(fit)
 #_________________________________________________________________________
