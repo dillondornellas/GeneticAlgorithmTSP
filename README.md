@@ -21,7 +21,6 @@ Genetic algorithms are commonly used to generate high-quality solutions to optim
 **Initial Results** 
 
 Random Weighted Pool Selection using various population sizes
-https://github.com/dillondornellas/GeneticAlgorithmTSP/blob/8cf468bec26021d12db040d9e3159099c6b36c37/video/pop10_detail.gif
 ![image](https://user-images.githubusercontent.com/59612532/128558027-7501d013-563d-4a76-933c-ccd1c96e187c.png)
 
 Visualization of the best result (Population Size 10 | Fitness Score : 900,000km) 
