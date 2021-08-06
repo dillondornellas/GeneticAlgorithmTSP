@@ -1,5 +1,4 @@
-# GeneticTSP
-Genetic TSP Algorithm
+# Genetic TSP Algorithm
 
 **The Problem**  
 The travelling salesman problem (TSP) asks the following question:  
