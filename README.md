@@ -37,6 +37,7 @@ Improved Competitive Pool Selection using various population sizes
 Visualization of the best result (Population Size 50 | Fitness Score : 500,000km) 
 - Modifying the "Parent" selection by selecting a random group from the population and having them fight (based on inverse fitness score) makes it more likely that stronger parents are selected.
 - This should allow for larger populations to be used since stronger parents are more likely to pass on its "Genes" 
+- This improved method is able to reach the Fitness Score of the previous iteration in 1/4th the "generations"
 - **This has resulted in an improvement of 43.66% over that past method**  
 
 ![alt text](https://github.com/dillondornellas/GeneticAlgorithmTSP/blob/8cf468bec26021d12db040d9e3159099c6b36c37/video/pop50.gif?raw=true)
