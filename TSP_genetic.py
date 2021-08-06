@@ -1,26 +1,29 @@
 from collections import namedtuple
-from typing import List, Callable, Tuple
+from typing import List
 from random import choices, sample, randint, random
 import math
-import time
 from capitals import things
-#from TSP_plot import draw_frame
+import pandas as pd
 
-#Thing = namedtuple('Thing', ['name', 'coords'])
-#
-## create list of cities
-#things = [             #  Lat      Lon
-#    Thing('Toronto'  , (43.650, -79.380)),
-#    Thing('Montreal' , (45.520, -73.570)),
-#    Thing('Vancouver', (49.280, -123.130)),
-#    Thing('Calgary'  , (51.050, -114.060)),
-#    Thing('Ottawa'   , (45.420, -75.710)),
-#    Thing('Edmonton' , (53.570, -113.540)),
-#    Thing('Hamilton' , (43.260, -79.850)),
-#    Thing('Quebec'   , (46.820, -71.230)),
-#    Thing('Winnipeg' , (49.880, -97.170)),
-#]
+#______________ 
+pop_size = 50
+gen_limit = 2000
+#______________
 
+'''
+Thing = namedtuple('Thing', ['name', 'coords'])
+things = [             #  Lat      Lon
+    Thing('Toronto'  , (43.650, -79.380)),
+    Thing('Montreal' , (45.520, -73.570)),
+    Thing('Vancouver', (49.280, -123.130)),
+    Thing('Calgary'  , (51.050, -114.060)),
+    Thing('Ottawa'   , (45.420, -75.710)),
+    Thing('Edmonton' , (53.570, -113.540)),
+    Thing('Hamilton' , (43.260, -79.850)),
+    Thing('Quebec'   , (46.820, -71.230)),
+    Thing('Winnipeg' , (49.880, -97.170)),
+]
+'''
 Genome = List[int]
 Population = List[Genome]
 
@@ -64,12 +67,24 @@ def fitness(genome: Genome, things: things) -> int:
     return value
 
 def select_parents(population: Population) -> Population:
-    #can add joisting of two random pairs to become parents, instead of two random strong parents
-    return choices(
+
+    champions = []
+
+    # SELECT 4 COMBATANTS (WEIGHTED BY FITNESS) TO JOUST FOR PARENTHOOD
+    competitors = choices(
         population=population,
         weights=[(1 / (fitness(genome, things))) for genome in population],
-        k=2
+        k=4
     )
+
+    # JOUSTING
+    for i in range(0, 4, 2):
+        if fitness(competitors[i], things) < fitness(competitors[i+1], things):
+            champions.append(competitors[i]) 
+        else: champions.append(competitors[i+1])
+
+    # RETURN THE TWO PARENTS
+    return champions
 
 def single_point_crossover(a: Genome, b: Genome) -> tuple:
     if len(a) != len(b):
@@ -102,8 +117,8 @@ def mutation(genome: Genome, probability: float=0.3) -> Genome:
         genome = swap_random(genome) 
     return genome
 
-def evolution(generation_limit: int = 1000, fitness_limit: int = 7000):
-    population = generate_population(size = 50, genome_length=len(things))
+def evolution(generation_limit: int = gen_limit, fitness_limit: int = 7000):
+    population = generate_population(size = pop_size, genome_length=len(things))
 
     for gen in range(generation_limit):
         #rearange in order of fitness score
@@ -140,22 +155,18 @@ def evolution(generation_limit: int = 1000, fitness_limit: int = 7000):
     return population[0]
     #return population[0], fitness(population[0], things), (i+1) 
 
-
-# TEST BENCH_______________________________________________________________
-#Population = generate_population(10, len(things))
-#print('Genomes : Fitness')
-#for geno in Population:
-#    print(str(geno) + " " + str(fitness(geno, things)))
-#print('Weighted Random parents: ')
-#pair = select_parents(Population)
-#print(pair)
-#print('Crossover Children: ')
-#cross_pair = single_point_crossover(pair[0], pair[1])
-#print(cross_pair)
-#print('Potentially Mutated Children: ')
-#mute_1 = mutation(cross_pair[0])
-#mute_2 = mutation(cross_pair[1])
-#print(' ' +str(mute_1) + '  ' + str(mute_2))
+#fitness_count = []
 #for sequence, fit, gen in evolution():
-    #print(fit)
-#_________________________________________________________________________
+#    title = "Generation : " + str(gen+1) + " | Fitness : " + str(fit)
+#    print(title)
+#    fitness_count.append(fit)
+#
+## APPEND TO CSV
+#column = str(pop_size)
+## read in CSV
+##df = pd.DataFrame(fitness_count, columns = [column])
+#df = pd.read_csv("datav2.csv")
+## add new column to DF
+#df[column] = fitness_count
+## save new DF
+#df.to_csv("datav2.csv", index=False)
