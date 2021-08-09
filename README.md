@@ -27,7 +27,9 @@ Visualization of the best result (Population Size 10 | Fitness Score : 900,000km
 - It can be seen that increasing population size yields worse results.
 - Although it might seem that having a larger population with more routes would yield better results, it seems that having a larger population results in better solutions not being selected as often to be "parents" 
 
-![alt text](https://github.com/dillondornellas/GeneticAlgorithmTSP/blob/8cf468bec26021d12db040d9e3159099c6b36c37/video/pop10_detail.gif?raw=true)
+![alt text](https://github.com/dillondornellas/GeneticAlgorithmTSP/blob/574f87eb0feb36d1b4cd153d981fcb0416af5c8c/video/pop10_detail_sized.gif?raw=true)
+
+**Final Results** 
 
 Improved Competitive Pool Selection using various population sizes
 
