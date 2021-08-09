@@ -10,20 +10,6 @@ pop_size = 50
 gen_limit = 2000
 #______________
 
-'''
-Thing = namedtuple('Thing', ['name', 'coords'])
-things = [             #  Lat      Lon
-    Thing('Toronto'  , (43.650, -79.380)),
-    Thing('Montreal' , (45.520, -73.570)),
-    Thing('Vancouver', (49.280, -123.130)),
-    Thing('Calgary'  , (51.050, -114.060)),
-    Thing('Ottawa'   , (45.420, -75.710)),
-    Thing('Edmonton' , (53.570, -113.540)),
-    Thing('Hamilton' , (43.260, -79.850)),
-    Thing('Quebec'   , (46.820, -71.230)),
-    Thing('Winnipeg' , (49.880, -97.170)),
-]
-'''
 Genome = List[int]
 Population = List[Genome]
 
@@ -155,6 +141,7 @@ def evolution(generation_limit: int = gen_limit, fitness_limit: int = 7000):
     return population[0]
     #return population[0], fitness(population[0], things), (i+1) 
 
+# TEST BENCH FOR GENETIC ALGORITHM
 #fitness_count = []
 #for sequence, fit, gen in evolution():
 #    title = "Generation : " + str(gen+1) + " | Fitness : " + str(fit)
