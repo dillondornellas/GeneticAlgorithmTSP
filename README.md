@@ -20,20 +20,16 @@ Genetic algorithms are commonly used to generate high-quality solutions to optim
 
 **Initial Results** 
 
-Random Weighted Pool Selection using various population sizes
-![image](https://user-images.githubusercontent.com/59612532/128558027-7501d013-563d-4a76-933c-ccd1c96e187c.png)
-
 Visualization of the best result (Population Size 10 | Fitness Score : 900,000km) 
 - It can be seen that increasing population size yields worse results.
 - Although it might seem that having a larger population with more routes would yield better results, it seems that having a larger population results in better solutions not being selected as often to be "parents" 
 
 ![alt text](https://github.com/dillondornellas/GeneticAlgorithmTSP/blob/574f87eb0feb36d1b4cd153d981fcb0416af5c8c/video/pop10_detail_sized.gif?raw=true)
 
+Random Weighted Pool Selection using various population sizes
+![image](https://user-images.githubusercontent.com/59612532/128558027-7501d013-563d-4a76-933c-ccd1c96e187c.png)
+
 **Final Results** 
-
-Improved Competitive Pool Selection using various population sizes
-
-![image](https://user-images.githubusercontent.com/59612532/128561729-ab77676a-101f-4189-ae16-c1498087d411.png)
 
 Visualization of the best result (Population Size 50 | Fitness Score : 500,000km) 
 - Modifying the "Parent" selection by selecting a random group from the population and having them fight (based on inverse fitness score) makes it more likely that stronger parents are selected.
@@ -42,5 +38,11 @@ Visualization of the best result (Population Size 50 | Fitness Score : 500,000km
 - **This has resulted in an improvement of 43.66% over that past method**  
 
 ![alt text](https://github.com/dillondornellas/GeneticAlgorithmTSP/blob/8cf468bec26021d12db040d9e3159099c6b36c37/video/pop50.gif?raw=true)
+
+Improved Competitive Pool Selection using various population sizes
+
+![image](https://user-images.githubusercontent.com/59612532/128561729-ab77676a-101f-4189-ae16-c1498087d411.png)
+
+
 
 
